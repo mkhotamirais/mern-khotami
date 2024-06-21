@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+html {
+    @apply scroll-smooth;
+  }
+  .overflow-x-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .overflow-y-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  pre {
+    @apply overflow-x-scroll;
+  }
+  

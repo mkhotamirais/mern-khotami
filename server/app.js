@@ -10,6 +10,7 @@ import tagsRoute from "./routes/tagRouter.js";
 import authRoute from "./routes/authRouter.js";
 import userRoute from "./routes/userRouter.js";
 import productRoute from "./routes/productRouter.js";
+import kamusRoute from "./routes/kamusRouter.js";
 
 app.get("/", (req, res) => {
   res.send(`khotami-mern`);
@@ -47,6 +48,8 @@ app.use("/api/khotami-mern/tag", tagsRoute);
 app.use("/api/khotami-mern/auth", authRoute);
 app.use("/api/khotami-mern/user", userRoute);
 app.use("/api/khotami-mern/product", productRoute);
+// kamus
+app.use("/api/khotami-mern/kamus", kamusRoute);
 
 db.then(() => {
   app.listen(port, () => console.log(`connect to mongodb, running on port ${port}`));

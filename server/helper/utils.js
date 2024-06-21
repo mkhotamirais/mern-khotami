@@ -26,7 +26,7 @@ export const setCookie = (res, name, token) => {
     secure: true,
     httpOnly: true,
     // maxAge: 30 * 24 * 60 * 60 * 1000,
-    sameSite: "none",
+    sameSite: "lax",
     path: "/",
   });
 };
@@ -35,8 +35,11 @@ export const removeCookie = (res, name) => {
   res.clearCookie(`${name}`, {
     secure: true,
     httpOnly: true,
-    sameSite: "none",
+    sameSite: "lax",
     // expires: new Date(0),
     path: "/",
   });
 };
+
+// // Set cookie dengan JavaScript sebagai first-party cookie
+// document.cookie = "key=value; path=/; SameSite=Lax; Secure";

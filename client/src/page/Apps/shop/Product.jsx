@@ -1,6 +1,4 @@
 import { Err, ItemsCard, Loading, Title, ViewOption } from "../../../components/Components";
-import { Link } from "react-router-dom";
-import { FaCirclePlus } from "react-icons/fa6";
 import { useEffect } from "react";
 import { useQuery } from "../../../store/query";
 import ProducCard from "./ProductCard";
@@ -60,9 +58,6 @@ export default function Product() {
       <div className="flex gap-5 items-center">
         <Title>Product</Title>
         <ViewOption view={view} setView={setView} />
-        <Link to="post" className="text-xl text-cyan-500 hover:opacity-70">
-          <FaCirclePlus />
-        </Link>
       </div>
       <div className="flex justify-between gap-2">
         <QuerySearch />

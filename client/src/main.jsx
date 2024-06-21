@@ -25,6 +25,9 @@ import AdmProductUpdate from "./page/Apps/dash/adm-product/AdmProductUpdate.jsx"
 import { ProtectedAdmin, ProtectedUser } from "./page/Apps/dash/profile/ProtectedRole.jsx";
 import AuthRedirect from "./page/Apps/auth/AuthRedirect.jsx";
 import Product from "./page/Apps/shop/Product.jsx";
+import AdmKamus from "./page/Apps/dash/adm-kamus/AdmKamus.jsx";
+import AdmKamusPost from "./page/Apps/dash/adm-kamus/AdmKamusPost.jsx";
+import AdmKamusUpdate from "./page/Apps/dash/adm-kamus/AdmKamusUpdate.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -62,6 +65,11 @@ const router = createBrowserRouter(
           </Route>
           <Route path="adm-tags" element={<AdmTags />} />
           <Route path="adm-category" element={<AdmCategory />} />
+          <Route path="adm-kamus">
+            <Route index element={<AdmKamus />} />
+            <Route path="post" element={<AdmKamusPost />} />
+            <Route path="update/:id" element={<AdmKamusUpdate />} />
+          </Route>
         </Route>
       </Route>
     </Route>

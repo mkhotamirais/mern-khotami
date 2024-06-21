@@ -1,14 +1,6 @@
 import User from "../models/userModel.js";
 import validator from "validator";
-import {
-  hashPass,
-  comparePass,
-  setCookie,
-  setToken,
-  err,
-  ok,
-  removeCookie,
-} from "../helper/utils.js";
+import { hashPass, comparePass, setCookie, setToken, err, ok, removeCookie } from "../helper/utils.js";
 
 export const signup = async (req, res) => {
   try {
@@ -18,8 +10,7 @@ export const signup = async (req, res) => {
     const dupEmail = await User.findOne({ email });
     if (dupEmail) return err(res, 409, `email registered`);
     if (!validator.isEmail(email)) return err(res, 400, `email invalid`);
-    if (password !== confPassword)
-      return err(res, 400, `confirm password wrong`);
+    if (password !== confPassword) return err(res, 400, `confirm password wrong`);
     if (role && role === "admin") req.body.role = "user";
     req.body.password = hashPass(password);
     const data = await User.create(req.body);
@@ -42,11 +33,8 @@ export const signin = async (req, res) => {
       role: match.role,
     });
     setCookie(res, "accessToken", token);
-    const data = await User.findByIdAndUpdate(
-      match?._id,
-      { $push: { token } },
-      { new: true }
-    );
+
+    const data = await User.findByIdAndUpdate(match?._id, { $push: { token } }, { new: true });
     ok(res, 200, `login ${data?.username} success`, token);
   } catch (error) {
     err(res, 400, error);
@@ -60,11 +48,7 @@ export const signout = async (req, res) => {
     const match = await User.findOne({ token: { $in: token } });
     if (!match) return err(res, 403, `forbidden: token tidak valid`);
     removeCookie(res, "accessToken");
-    const data = await User.findByIdAndUpdate(
-      match._id,
-      { $pull: { token } },
-      { new: true }
-    );
+    const data = await User.findByIdAndUpdate(match._id, { $pull: { token } }, { new: true });
     ok(res, 200, `logout ${data.username} success`, data);
   } catch (error) {
     err(res, 400, error);
@@ -91,8 +75,7 @@ export const updateMe = async (req, res) => {
     if (!match) return err(res, 403, `forbidden: token tidak valid`);
     const { password, confPassword } = req.body;
     if (password) {
-      if (password !== confPassword)
-        return err(res, 400, `confirm password wrong`);
+      if (password !== confPassword) return err(res, 400, `confirm password wrong`);
       req.body.password = hashPass(password);
     }
     const data = await User.findByIdAndUpdate(match._id, req.body, {
@@ -110,8 +93,7 @@ export const deleteMe = async (req, res) => {
       token: { $in: req.cookies.accessToken },
     });
     if (!match) return err(res, 403, `forbidden: token tidak valid`);
-    if (match.role === "admin")
-      return err(res, 400, `role admin cannot deleted, change role first`);
+    if (match.role === "admin") return err(res, 400, `role admin cannot deleted, change role first`);
     const data = await User.findByIdAndDelete(match._id);
     ok(res, 200, `delete your account success`, data);
   } catch (error) {
