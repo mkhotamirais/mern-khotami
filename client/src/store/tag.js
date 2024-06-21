@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import { url } from "../lib/data";
+import { axiosCred } from "./auth";
 
 export const useTag = create((set) => ({
   editId: null,
@@ -9,24 +10,25 @@ export const useTag = create((set) => ({
   setModalDelId: (id) => set(() => ({ modalDelId: id })),
   data: [],
   error: null,
-  loadGet: false,
+  loadPage: false,
+  errPage: null,
   loadPost: false,
   loadDelId: null,
   loadUpdateId: null,
   getTags: () => {
-    set({ loadGet: true });
+    set({ loadPage: true });
     axios
       .get(`${url}/tag`)
       .then((res) => {
-        set({ data: res.data.data, loadGet: false });
+        set({ data: res.data.data, loadPage: false });
       })
       .catch((err) => {
-        set({ errorGet: err?.response?.data?.message, loadGet: false });
+        set({ errPage: err?.response?.data?.message, loadPage: false });
       });
   },
   postTag: async (data) => {
     set({ loadPost: true });
-    const res = await axios
+    const res = await axiosCred
       .post(`${url}/tag`, data)
       .then((res) => ({ ok: true, message: res?.data?.message }))
       .catch((err) => ({ ok: false, message: err?.response?.data?.message }));
@@ -35,7 +37,7 @@ export const useTag = create((set) => ({
   },
   deleteTag: async (id) => {
     set({ loadDelId: id });
-    return await axios
+    return await axiosCred
       .delete(`${url}/tag/${id}`)
       .then((res) => {
         set({ loadDelId: null });
@@ -48,7 +50,7 @@ export const useTag = create((set) => ({
   },
   updateTag: async (id, data) => {
     set({ loadUpdateId: id });
-    return await axios
+    return await axiosCred
       .patch(`${url}/tag/${id}`, data)
       .then((res) => {
         set({ loadUpdateId: null });

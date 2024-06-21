@@ -50,7 +50,7 @@ ItemsCard.propTypes;
 
 export const Actions = ({ id, detail = true, update = true, del = true, onDel, className }) => {
   return (
-    <div className={`${className} flex`}>
+    <div className={`${className} flex w-full`}>
       {detail && (
         <Link to={`detail/${id}`}>
           <FaCircleInfo className="text-blue-500 hover:opacity-70" />

@@ -60,7 +60,7 @@ export default function AdmProductPost() {
         <Textarea id="desc" value={desc} placeholder="description" onChange={(e) => setDesc(e.target.value)} />
         <Label id="category">
           category{" "}
-          <Link to="/adm-category" className="text-sm underline leading-none">
+          <Link to="/app/adm-category" className="text-sm underline leading-none">
             Add one
           </Link>
         </Label>
@@ -74,7 +74,7 @@ export default function AdmProductPost() {
         </Select>
         <Label id="tag">
           tag{" "}
-          <Link to="/adm-tag" className="text-sm underline leading-none">
+          <Link to="/app/adm-tags" className="text-sm underline leading-none">
             Add one
           </Link>
         </Label>

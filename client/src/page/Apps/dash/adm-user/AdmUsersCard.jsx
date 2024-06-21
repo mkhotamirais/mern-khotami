@@ -1,6 +1,11 @@
 import { FaUser, FaCircleUser } from "react-icons/fa6";
+import { Actions } from "../../../../components/Components";
+import { AdmUserModalDel } from "./AdmUserModalDel";
+import { useState } from "react";
 
 export default function AdmUsersCard({ item }) {
+  const [idModalDel, setIdModalDel] = useState(null);
+
   return (
     <div className="border rounded p-2">
       <div className="flex items-center gap-2">
@@ -11,8 +16,12 @@ export default function AdmUsersCard({ item }) {
         <FaCircleUser />
         {item?.role}
       </div>
-      {/* <Actions id={item?._id} onDel={() => setIdModalDel(item?._id)} className={`gap-3 mt-2 pt-2 border-t`} /> */}
-      {/* <AdmUserModalDel item={item} modalId={idModalDel} onClose={() => setIdModalDel(null)} /> */}
+      <Actions
+        id={item?._id}
+        onDel={() => setIdModalDel(item?._id)}
+        className={`gap-3 mt-2 pt-2 border-t justify-around`}
+      />
+      <AdmUserModalDel item={item} modalId={idModalDel} onClose={() => setIdModalDel(null)} />
     </div>
   );
 }

@@ -7,16 +7,8 @@ import AdmCategoryModalDel from "./AdmCategoryModalDel";
 
 export default function AdmCategoryItems({ item }) {
   const [name, setName] = useState(item?.name);
-  const {
-    modalDelId,
-    setModalDelId,
-    editId,
-    setEditId,
-    updateCategory,
-    getCategories,
-    loadDelId,
-    loadUpdateId,
-  } = useCategory();
+  const { modalDelId, setModalDelId, editId, setEditId, updateCategory, getCategories, loadDelId, loadUpdateId } =
+    useCategory();
 
   const handleUpdate = () => {
     updateCategory(item?._id, { name }).then((res) => {
@@ -46,13 +38,10 @@ export default function AdmCategoryItems({ item }) {
           value={name}
           onKeyUp={(e) => e.key === "Enter" && handleUpdate()}
           onChange={(e) => setName(e.target.value)}
-          className="rounded w-full focus:outline-none"
+          className="rounded w-full focus:outline-none bg-inherit"
         />
       ) : (
-        <div
-          className="flex-grow hover:cursor-text"
-          onClick={() => setEditId(item?._id)}
-        >
+        <div className="flex-grow hover:cursor-text" onClick={() => setEditId(item?._id)}>
           {item?.name}
         </div>
       )}
@@ -75,17 +64,9 @@ export default function AdmCategoryItems({ item }) {
             <FaPenToSquare className="text-green-600" />
           </button>
           <button onClick={() => setModalDelId(item?._id)}>
-            {loadDelId === item?._id ? (
-              <PiSpinner className="animate-spin" />
-            ) : (
-              <FaTrashCan className="text-red-600" />
-            )}
+            {loadDelId === item?._id ? <PiSpinner className="animate-spin" /> : <FaTrashCan className="text-red-600" />}
           </button>
-          <AdmCategoryModalDel
-            item={item}
-            modalId={modalDelId}
-            onClose={() => setModalDelId(null)}
-          />
+          <AdmCategoryModalDel item={item} modalId={modalDelId} onClose={() => setModalDelId(null)} />
         </div>
       )}
     </div>

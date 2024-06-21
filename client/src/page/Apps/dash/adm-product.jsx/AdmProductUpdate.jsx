@@ -42,8 +42,10 @@ export default function AdmProductUpdate() {
     if (data) {
       setName(data?.name);
       setPrice(data?.price);
+      setDesc(data?.desc);
       setCategory(data?.category?._id);
       setTag(data?.tag.map((t) => t._id));
+      console.log(data);
     }
   }, [data]);
 

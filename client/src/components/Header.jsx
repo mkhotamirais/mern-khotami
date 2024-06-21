@@ -109,7 +109,12 @@ DarkMode.propTypes;
 
 export const SourceCode = ({ className }) => {
   return (
-    <a href="" className={`${className} text-xl`}>
+    <a
+      href="https://github.com/mkhotamirais/mern-khotami"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${className} text-xl`}
+    >
       <FaGithub />
     </a>
   );

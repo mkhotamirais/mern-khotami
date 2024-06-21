@@ -4,6 +4,10 @@ import { axiosCred } from "./auth";
 import { url } from "../lib/data";
 
 export const useProduct = create((set) => ({
+  // paginasi
+  currentPage: 1,
+  setCurrentPage: (num) => set({ currentPage: num }),
+  // lainnya
   view: JSON.parse(localStorage.getItem("productView")) || "card",
   setView: (param) =>
     set(() => {
@@ -13,17 +17,18 @@ export const useProduct = create((set) => ({
     }),
   data: [],
   singleData: null,
+  countData: null,
   loadPage: false,
   errPage: false,
   loadPost: false,
   loadDel: false,
   loadUpdate: false,
-  getProducts: () => {
+  getProducts: (queryRes) => {
     set({ loadPage: true });
     axios
-      .get(`${url}/product`)
+      .get(`${url}/product?${queryRes ? queryRes : "limit=2"}`)
       .then((res) => {
-        set({ loadPage: false, data: res?.data?.data });
+        set({ loadPage: false, data: res?.data?.data, countData: res?.data?.count });
       })
       .catch((err) => {
         set({ loadPage: false, errPage: err?.response?.data?.message });

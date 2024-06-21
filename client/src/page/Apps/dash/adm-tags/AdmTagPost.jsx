@@ -25,14 +25,11 @@ export default function AdmTagPost() {
         value={name}
         onClick={() => setEditId(null)}
         onChange={(e) => setName(e.target.value)}
-        className="border rounded-lg p-2 w-full focus:outline-cyan-200"
+        className="border rounded-lg p-2 w-full focus:outline-cyan-200 bg-inherit"
         placeholder="Add tag"
       />
-      <button
-        type="submit"
-        className="bg-cyan-500 w-12 flex items-center justify-center rounded-lg text-white"
-      >
-        {loadPost ? <PiSpinner /> : <FaPlus />}
+      <button type="submit" className="bg-cyan-500 w-12 flex items-center justify-center rounded-lg text-white">
+        {loadPost ? <PiSpinner className="animate-spin" /> : <FaPlus />}
       </button>
     </form>
   );

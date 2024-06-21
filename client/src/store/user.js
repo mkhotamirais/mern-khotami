@@ -47,6 +47,7 @@ export const useUser = create((set) => ({
         return { ok: true, message: res?.data?.message };
       })
       .catch((err) => {
+        set({ loadPost: false });
         return { ok: false, message: err?.response?.data?.message };
       });
   },
@@ -59,6 +60,7 @@ export const useUser = create((set) => ({
         return { ok: true, message: res?.data?.message };
       })
       .catch((err) => {
+        set({ loadPage: false });
         return { ok: false, message: err?.response?.data?.message };
       });
   },

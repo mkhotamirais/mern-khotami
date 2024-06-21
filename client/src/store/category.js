@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import { url } from "../lib/data";
+import { axiosCred } from "./auth";
 
 export const useCategory = create((set) => ({
   editId: null,
@@ -9,24 +10,25 @@ export const useCategory = create((set) => ({
   setModalDelId: (id) => set(() => ({ modalDelId: id })),
   data: [],
   error: null,
-  loadGet: false,
+  loadPage: false,
+  errPage: false,
   loadPost: false,
   loadDelId: null,
   loadUpdateId: null,
   getCategories: () => {
-    set({ loadGet: true });
+    set({ loadPage: true });
     axios
       .get(`${url}/category`)
       .then((res) => {
-        set({ data: res.data.data, loadGet: false });
+        set({ data: res.data.data, loadPage: false });
       })
       .catch((err) => {
-        set({ errorGet: err?.response?.data?.message, loadGet: false });
+        set({ errPage: err?.response?.data?.message, loadPage: false });
       });
   },
   postCategory: async (data) => {
     set({ loadPost: true });
-    const res = await axios
+    const res = await axiosCred
       .post(`${url}/category`, data)
       .then((res) => ({ ok: true, message: res?.data?.message }))
       .catch((err) => ({ ok: false, message: err?.response?.data?.message }));
@@ -35,7 +37,7 @@ export const useCategory = create((set) => ({
   },
   deleteCategory: async (id) => {
     set({ loadDelId: id });
-    return await axios
+    return await axiosCred
       .delete(`${url}/category/${id}`)
       .then((res) => {
         set({ loadDelId: null });
@@ -48,7 +50,7 @@ export const useCategory = create((set) => ({
   },
   updateCategory: async (id, data) => {
     set({ loadUpdateId: id });
-    return await axios
+    return await axiosCred
       .patch(`${url}/category/${id}`, data)
       .then((res) => {
         set({ loadUpdateId: null });

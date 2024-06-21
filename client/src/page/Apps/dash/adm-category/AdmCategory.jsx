@@ -1,25 +1,23 @@
 import { useEffect } from "react";
 import { useCategory } from "../../../../store/category";
-import { Title } from "../../../../components/Components";
+import { Err, Loading, Title } from "../../../../components/Components";
 import AdmCategoryPost from "./AdmCategoryPost";
 import AdmCategoryItems from "./AdmCategoryItems";
 
 export default function AdmCategory() {
-  const { data: categories, loadGet, error, getCategories } = useCategory();
+  const { data, loadPage, errPage, getCategories } = useCategory();
   useEffect(() => {
     getCategories();
   }, [getCategories]);
 
   let content;
-  if (loadGet) content = <p>Loading...</p>;
-  if (error) content = <p>Error: {error}</p>;
+  if (loadPage) content = <Loading />;
+  else if (errPage) content = <Err>Error: {errPage}</Err>;
   else {
-    const renderedData = categories?.map((item) => (
-      <AdmCategoryItems key={item._id} item={item} />
-    ));
-    content = (
-      <div className="border rounded-lg bg-white p-3">{renderedData}</div>
-    );
+    if (data?.length > 0) {
+      const renderedData = data && data?.map((item) => <AdmCategoryItems key={item._id} item={item} />);
+      content = <div className="border rounded-lg p-3">{renderedData}</div>;
+    } else content = <Err>no content</Err>;
   }
 
   return (

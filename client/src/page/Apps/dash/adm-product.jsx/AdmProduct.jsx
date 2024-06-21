@@ -3,27 +3,29 @@ import AdmProducCard from "./AdmProducCard";
 import AdmProductTable from "./AdmProductTable";
 import { Link } from "react-router-dom";
 import { FaCirclePlus } from "react-icons/fa6";
-// import {
-//   QueryCategory,
-//   QuerySearch,
-//   QuerySortCategory,
-//   QuerySortCreated,
-//   QuerySortName,
-//   QuerySortPrice,
-//   QuerySortUpdated,
-//   QueryTag,
-//   ResetQuery,
-// } from "./ProductQuery";
-// import ProductPagination from "./ProductPagination";
 import { useProduct } from "../../../../store/product";
 import { useEffect } from "react";
+import { QueryCategory, QuerySearch, QuerySort, QueryTag, ResetQuery } from "./ProductQuery";
+import { useQuery } from "../../../../store/query";
+import ProductPagination from "./ProductPagination";
 
 export default function AdmProduct() {
-  const { view, setView, getProducts, data, loadPage, errPage } = useProduct();
+  const { view, setView, getProducts, data, loadPage, errPage, countData } = useProduct();
+  const { query, queryStr, tagIds, tagIdsStr, setTagIdsStr, setQueryStr } = useQuery();
 
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    setQueryStr(query);
+    setTagIdsStr(tagIds);
+  }, [setQueryStr, query, tagIds, setTagIdsStr]);
+
+  // useEffect(() => {
+  //   console.log(tagIds);
+  //   console.log(tagIdsStr);
+  // }, [tagIds, tagIdsStr]);
+
+  useEffect(() => {
+    getProducts(queryStr + tagIdsStr);
+  }, [getProducts, queryStr, tagIdsStr]);
 
   let content;
   if (loadPage) content = <Loading />;
@@ -63,24 +65,16 @@ export default function AdmProduct() {
           <FaCirclePlus />
         </Link>
       </div>
-      {/* <div className="flex justify-between gap-2">
+      <div className="flex justify-between gap-2">
         <QuerySearch />
         <ResetQuery />
       </div>
-      <div className="flex gap-1 items-center my-1 flex-wrap">
-        <div className="min-w-max">Sort:</div>
-        <QuerySortName />
-        <QuerySortPrice />
-        <QuerySortCategory />
-        <QuerySortCreated />
-        <QuerySortUpdated />
-      </div>
       <div className="flex gap-1 items-center my-1">
-        <div className="min-wmax">Filter:</div>
         <QueryCategory />
+        <QuerySort />
       </div>
-      <QueryTag /> */}
-      {/* <ProductPagination data={products} /> */}
+      <QueryTag />
+      <ProductPagination data={data} countData={countData} />
       {content}
     </div>
   );

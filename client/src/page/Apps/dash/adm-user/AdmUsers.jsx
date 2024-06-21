@@ -31,7 +31,7 @@ export default function AdmUsers() {
               <th className="hidden sm:table-cell">email</th>
               <th className="hidden md:table-cell">created</th>
               <th className="hidden lg:table-cell">updated</th>
-              <th className="flex justify-center">Action</th>
+              <th className="flex justify-center min-w-24">Action</th>
             </tr>
           </thead>
           <tbody>{tableUsers}</tbody>

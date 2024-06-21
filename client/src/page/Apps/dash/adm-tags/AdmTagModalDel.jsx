@@ -13,14 +13,7 @@ export default function AdmTagModalDel({ onClose, item, modalId }) {
       } else toast.error(res.message);
     });
   };
-  //   const handleDelete = () => {
-  //     deleteTag(item?._id).then((res) => {
-  //       if (res.ok) {
-  //         toast.success(res.message);
-  //         getTags();
-  //       } else toast.error(res.message);
-  //     });
-  //   };
+
   return (
     <Modal
       itemId={item?._id}

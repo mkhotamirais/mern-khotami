@@ -19,11 +19,11 @@ export const useAuth = create((set) => ({
     return await axiosCred
       .patch(`${url}/auth/signin`, data)
       .then((res) => {
-        set({ loadUp: false });
+        set({ loadIn: false });
         return { ok: true, message: res?.data?.message };
       })
       .catch((err) => {
-        set({ loadUp: false });
+        set({ loadIn: false });
         return { ok: false, message: err?.response.data.message };
       });
   },

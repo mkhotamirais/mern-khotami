@@ -6,8 +6,7 @@ import { useAuth } from "../../../store/auth";
 import toast from "react-hot-toast";
 
 export default function Login() {
-  const { signin, getMe } = useAuth();
-  const isLoading = false;
+  const { signin, getMe, loadIn } = useAuth();
   const [data, setData] = useState({});
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,28 +19,18 @@ export default function Login() {
       if (res.ok) {
         toast.success(res.message);
         getMe();
-        navigate("..");
+        navigate("/app");
       } else toast.error(res.message);
     });
   };
 
   return (
     <div>
-      <AuthLayout onSubmit={handleSubmit} title="login" isLoading={isLoading}>
+      <AuthLayout onSubmit={handleSubmit} title="login" isLoading={loadIn}>
         <Label id="username">username</Label>
-        <Input
-          id="username"
-          autoFocus={true}
-          placeholder={"username"}
-          onChange={handleChange}
-        />
+        <Input id="username" autoFocus={true} placeholder={"username"} onChange={handleChange} />
         <Label id="password">password</Label>
-        <Input
-          type="password"
-          id="password"
-          placeholder={"password"}
-          onChange={handleChange}
-        />
+        <Input type="password" id="password" placeholder={"password"} onChange={handleChange} />
       </AuthLayout>
     </div>
   );
