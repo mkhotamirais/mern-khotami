@@ -1,10 +1,6 @@
 import { create } from "zustand";
 import { axiosCred } from "./auth";
-const url = "http://localhost:5000/api/khotami-mern/user";
-
-// router.use(isLogin, isAdmin);
-// router.route("/").get(getUsers).post(postUser);
-// router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);
+import { url } from "../lib/data";
 
 export const useUser = create((set) => ({
   view: JSON.parse(localStorage.getItem("productView")) || "card",
@@ -23,7 +19,7 @@ export const useUser = create((set) => ({
   getUsers: async () => {
     set({ loadPage: true });
     axiosCred
-      .get(url)
+      .get(`${url}/user`)
       .then((res) => {
         set({ data: res?.data?.data, loadPage: false });
       })
@@ -34,7 +30,7 @@ export const useUser = create((set) => ({
   getUserById: async (id) => {
     set({ loadPage: true });
     axiosCred
-      .get(`${url}/${id}`)
+      .get(`${url}/user/${id}`)
       .then((res) => {
         set({ singleData: res?.data?.data, loadPage: false });
       })
@@ -45,7 +41,7 @@ export const useUser = create((set) => ({
   postUser: async (data) => {
     set({ loadPost: true });
     return await axiosCred
-      .post(url, data)
+      .post(`${url}/user`, data)
       .then((res) => {
         set({ loadPost: false });
         return { ok: true, message: res?.data?.message };
@@ -57,7 +53,7 @@ export const useUser = create((set) => ({
   deleteUser: async (id) => {
     set({ loadPage: true });
     return await axiosCred
-      .delete(`${url}/${id}`)
+      .delete(`${url}/user/${id}`)
       .then((res) => {
         set({ loadPage: false });
         return { ok: true, message: res?.data?.message };
@@ -69,7 +65,7 @@ export const useUser = create((set) => ({
   updateUser: async (id, data) => {
     set({ loadUpdate: true });
     return await axiosCred
-      .patch(`${url}/${id}`, data)
+      .patch(`${url}/user/${id}`, data)
       .then((res) => {
         set({ loadUpdate: false });
         return { ok: true, message: res?.data?.message };

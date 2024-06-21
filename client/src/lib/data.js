@@ -1,5 +1,8 @@
 import { FaCartShopping, FaRightToBracket, FaTags, FaUserGroup, FaUserPlus, FaUserGear, FaList } from "react-icons/fa6";
 
+// export const url = "http://localhost:5000/api/khotami-mern";
+export const url = "https://mern-khotami-server.vercel.app/api/khotami-mern";
+
 // nav
 export const navMenus = [
   { href: "/", label: "Home" },

@@ -1,6 +1,6 @@
 import { create } from "zustand";
-const url = "http://localhost:5000/api/khotami-mern/category";
 import axios from "axios";
+import { url } from "../lib/data";
 
 export const useCategory = create((set) => ({
   editId: null,
@@ -16,7 +16,7 @@ export const useCategory = create((set) => ({
   getCategories: () => {
     set({ loadGet: true });
     axios
-      .get(url)
+      .get(`${url}/category`)
       .then((res) => {
         set({ data: res.data.data, loadGet: false });
       })
@@ -27,7 +27,7 @@ export const useCategory = create((set) => ({
   postCategory: async (data) => {
     set({ loadPost: true });
     const res = await axios
-      .post(url, data)
+      .post(`${url}/category`, data)
       .then((res) => ({ ok: true, message: res?.data?.message }))
       .catch((err) => ({ ok: false, message: err?.response?.data?.message }));
     set({ loadPost: false });
@@ -36,7 +36,7 @@ export const useCategory = create((set) => ({
   deleteCategory: async (id) => {
     set({ loadDelId: id });
     return await axios
-      .delete(`${url}/${id}`)
+      .delete(`${url}/category/${id}`)
       .then((res) => {
         set({ loadDelId: null });
         return { ok: true, message: res?.data?.message };
@@ -49,7 +49,7 @@ export const useCategory = create((set) => ({
   updateCategory: async (id, data) => {
     set({ loadUpdateId: id });
     return await axios
-      .patch(`${url}/${id}`, data)
+      .patch(`${url}/category/${id}`, data)
       .then((res) => {
         set({ loadUpdateId: null });
         return { ok: true, message: res?.data?.message };

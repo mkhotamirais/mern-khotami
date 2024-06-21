@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import { axiosCred } from "./auth";
-const url = "http://localhost:5000/api/khotami-mern/product";
+import { url } from "../lib/data";
 
 export const useProduct = create((set) => ({
   view: JSON.parse(localStorage.getItem("productView")) || "card",
@@ -21,7 +21,7 @@ export const useProduct = create((set) => ({
   getProducts: () => {
     set({ loadPage: true });
     axios
-      .get(url)
+      .get(`${url}/product`)
       .then((res) => {
         set({ loadPage: false, data: res?.data?.data });
       })
@@ -32,7 +32,7 @@ export const useProduct = create((set) => ({
   getProductById: (id) => {
     set({ loadPage: true });
     axios
-      .get(`${url}/${id}`)
+      .get(`${url}/product/${id}`)
       .then((res) => {
         set({ loadPage: false, singleData: res?.data?.data });
       })
@@ -43,7 +43,7 @@ export const useProduct = create((set) => ({
   postProduct: async (data) => {
     set({ loadPost: true });
     return await axiosCred
-      .post(url, data)
+      .post(`${url}/product`, data)
       .then((res) => {
         set({ loadPost: false });
         return { ok: true, message: res?.data?.message };
@@ -56,7 +56,7 @@ export const useProduct = create((set) => ({
   deleteProduct: async (id) => {
     set({ loadDel: true });
     return await axiosCred
-      .delete(`${url}/${id}`)
+      .delete(`${url}/product/${id}`)
       .then((res) => {
         set({ loadDel: false });
         return { ok: true, message: res?.data?.message };
@@ -69,7 +69,7 @@ export const useProduct = create((set) => ({
   updateProduct: async (id, data) => {
     set({ loadUpdate: true });
     return await axiosCred
-      .patch(`${url}/${id}`, data)
+      .patch(`${url}/product/${id}`, data)
       .then((res) => {
         set({ loadUpdate: false });
         return { ok: true, message: res?.data?.message };

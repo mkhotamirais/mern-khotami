@@ -1,6 +1,6 @@
 import { create } from "zustand";
-const url = "http://localhost:5000/api/khotami-mern/tag";
 import axios from "axios";
+import { url } from "../lib/data";
 
 export const useTag = create((set) => ({
   editId: null,
@@ -16,7 +16,7 @@ export const useTag = create((set) => ({
   getTags: () => {
     set({ loadGet: true });
     axios
-      .get(url)
+      .get(`${url}/tag`)
       .then((res) => {
         set({ data: res.data.data, loadGet: false });
       })
@@ -27,16 +27,16 @@ export const useTag = create((set) => ({
   postTag: async (data) => {
     set({ loadPost: true });
     const res = await axios
-      .post(url, data)
+      .post(`${url}/tag`, data)
       .then((res) => ({ ok: true, message: res?.data?.message }))
       .catch((err) => ({ ok: false, message: err?.response?.data?.message }));
     set({ loadPost: false });
     return res;
   },
-  deleteTag: (id) => {
+  deleteTag: async (id) => {
     set({ loadDelId: id });
-    return axios
-      .delete(`${url}/${id}`)
+    return await axios
+      .delete(`${url}/tag/${id}`)
       .then((res) => {
         set({ loadDelId: null });
         return { ok: true, message: res?.data?.message };
@@ -46,10 +46,10 @@ export const useTag = create((set) => ({
         return { ok: false, message: err?.response.data.message };
       });
   },
-  updateTag: (id, data) => {
+  updateTag: async (id, data) => {
     set({ loadUpdateId: id });
-    return axios
-      .patch(`${url}/${id}`, data)
+    return await axios
+      .patch(`${url}/tag/${id}`, data)
       .then((res) => {
         set({ loadUpdateId: null });
         return { ok: true, message: res?.data?.message };
