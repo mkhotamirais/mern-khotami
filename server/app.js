@@ -11,14 +11,12 @@ import authRoute from "./routes/authRouter.js";
 import userRoute from "./routes/userRouter.js";
 import productRoute from "./routes/productRouter.js";
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.get("/", (req, res) => {
   res.send(`khotami-mern`);
 });
 
 const allowedOrigins = [
+  "https://mern-khotami.vercel.app",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",

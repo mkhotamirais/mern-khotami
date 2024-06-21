@@ -32,7 +32,7 @@ export const NavBtn = ({ className }) => {
   return (
     <button
       onClick={handleClick}
-      className={`${className} ${
+      className={`${className} block sm:hidden ${
         openNav ? "rotate-180" : ""
       } text-xl w-5 h-5 overflow-hidden transition-all duration-150`}
     >
