@@ -17,7 +17,7 @@ export const docMenus = [
 ];
 
 export const appsMenus = [
-  { href: "/app/shop", label: "shop" },
+  { href: "/app/product", label: "shop" },
   { href: "/app/kamus", label: "kamus" },
 ];
 

@@ -16,15 +16,15 @@ import AdmUsers from "./page/Apps/dash/adm-user/AdmUsers.jsx";
 import AdmUserDetail from "./page/Apps/dash/adm-user/AdmUserDetail.jsx";
 import AdmUsersPost from "./page/Apps/dash/adm-user/AdmUsersPost.jsx";
 import AdmUsersUpdate from "./page/Apps/dash/adm-user/AdmUsersUpdate.jsx";
-import Shop from "./page/Apps/shop/Shop.jsx";
 import Kamus from "./page/Apps/kamus/Kamus.jsx";
 import Profile from "./page/Apps/dash/profile/Profile.jsx";
-import AdmProduct from "./page/Apps/dash/adm-product.jsx/AdmProduct.jsx";
-import AdmProductPost from "./page/Apps/dash/adm-product.jsx/AdmProductPost.jsx";
-import AdmProductDetail from "./page/Apps/dash/adm-product.jsx/AdmProductDetail.jsx";
-import AdmProductUpdate from "./page/Apps/dash/adm-product.jsx/AdmProductUpdate.jsx";
+import AdmProduct from "./page/Apps/dash/adm-product/AdmProduct.jsx";
+import AdmProductPost from "./page/Apps/dash/adm-product/AdmProductPost.jsx";
+import AdmProductDetail from "./page/Apps/dash/adm-product/AdmProductDetail.jsx";
+import AdmProductUpdate from "./page/Apps/dash/adm-product/AdmProductUpdate.jsx";
 import { ProtectedAdmin, ProtectedUser } from "./page/Apps/dash/profile/ProtectedRole.jsx";
 import AuthRedirect from "./page/Apps/auth/AuthRedirect.jsx";
+import Product from "./page/Apps/shop/Product.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,7 +34,7 @@ const router = createBrowserRouter(
       <Route path="app" element={<Apps />}>
         {/* public */}
         <Route index element={<Dash />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="product" element={<Product />} />
         <Route path="kamus" element={<Kamus />} />
         {/* auth redirect */}
         <Route element={<AuthRedirect />}>
