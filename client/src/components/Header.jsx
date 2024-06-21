@@ -122,9 +122,9 @@ export const SourceCode = ({ className }) => {
 SourceCode.propTypes;
 
 export const Logo = ({ className }) => (
-  <div className={`${className} flex flex-col gap-0 *:leading-none min-w-max`}>
+  <a href="/" className={`${className} flex flex-col gap-0 *:leading-none min-w-max`}>
     <div className="text-xl">Khotami</div>
     <div className="text-sm">Mern</div>
-  </div>
+  </a>
 );
 Logo.propTypes;
