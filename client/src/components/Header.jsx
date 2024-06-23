@@ -8,7 +8,7 @@ import usePath from "../hooks/usePath";
 export default function Header() {
   return (
     <>
-      <header className="sticky top-0 h-16 px-3 lg:px-16 flex justify-between items-center border-b shadow bg-white dark:bg-slate-800">
+      <header className="sticky top-0 h-20 px-3 lg:px-16 flex justify-between items-center border-b shadow bg-white dark:bg-slate-800">
         <Logo />
         <NavMain />
         <div className="flex gap-3 items-center">
