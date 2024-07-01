@@ -20,7 +20,10 @@ export const KamusQuerySearch = () => {
         placeholder="Search here"
         className="w-full border rounded focus:outline-none p-1 bg-inherit"
       />
-      <button type="submit" className="w-12 border rounded flex items-center justify-center text-sm hover:opacity-70">
+      <button
+        type="submit"
+        className="w-12 text-blue-500 border rounded flex items-center justify-center text-sm hover:opacity-70"
+      >
         <FaMagnifyingGlass />
       </button>
     </form>

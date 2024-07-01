@@ -13,7 +13,7 @@ export function AuthLayout({ children, onSubmit, title = "login", isLoading }) {
           {children}
           <button
             type="submit"
-            className="bg-cyan-500 text-white p-1 w-20 rounded-lg hover:opacity-70 flex items-center justify-center"
+            className="bg-blue-500 text-white p-1 w-20 rounded-lg hover:opacity-70 flex items-center justify-center"
           >
             {isLoading ? (
               <div className="text-2xl">
@@ -27,7 +27,7 @@ export function AuthLayout({ children, onSubmit, title = "login", isLoading }) {
         {title === "login" && (
           <p className="mt-3">
             Do not have an account ?{" "}
-            <Link to="../register" className="text-cyan-500 hover:unerline">
+            <Link to="../register" className="text-blue-500 hover:unerline">
               register
             </Link>
           </p>
@@ -35,7 +35,7 @@ export function AuthLayout({ children, onSubmit, title = "login", isLoading }) {
         {title === "register" && (
           <p className="mt-3">
             Already have an account ?{" "}
-            <Link to="../login" className="text-cyan-500 hover:unerline">
+            <Link to="../login" className="text-blue-500 hover:unerline">
               login
             </Link>
           </p>

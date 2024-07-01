@@ -28,12 +28,18 @@ import Product from "./page/Apps/shop/Product.jsx";
 import AdmKamus from "./page/Apps/dash/adm-kamus/AdmKamus.jsx";
 import AdmKamusPost from "./page/Apps/dash/adm-kamus/AdmKamusPost.jsx";
 import AdmKamusUpdate from "./page/Apps/dash/adm-kamus/AdmKamusUpdate.jsx";
+import Doc1 from "./page/doc/Doc1.jsx";
+import Doc2 from "./page/doc/Doc2.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<ErrorBoundary />}>
       <Route index element={<Home />} />
-      <Route path="doc" element={<Doc />} />
+      <Route path="doc" element={<Doc />}>
+        <Route index element={<Doc1 />} />
+        <Route path="doc-1" element={<Doc1 />} />
+        <Route path="doc-2" element={<Doc2 />} />
+      </Route>
       <Route path="app" element={<Apps />}>
         {/* public */}
         <Route index element={<Dash />} />

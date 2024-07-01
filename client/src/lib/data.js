@@ -21,8 +21,8 @@ export const navMenus = [
 
 // aside
 export const docMenus = [
-  { href: "1", label: "doc1" },
-  { href: "2", label: "doc2" },
+  { href: "/doc/doc-1", label: "doc1" },
+  { href: "/doc/doc-2", label: "doc2" },
 ];
 
 export const appsMenus = [

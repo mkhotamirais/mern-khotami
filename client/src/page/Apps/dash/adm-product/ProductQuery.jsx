@@ -10,7 +10,7 @@ import { useProduct } from "../../../../store/product";
 export const ResetQuery = () => {
   const { resetAll } = useQuery();
   return (
-    <button onClick={resetAll} className="bg-cyan-500 rounded px-2 hover:opacity-70 text-white">
+    <button onClick={resetAll} className="bg-blue-500 rounded px-2 hover:opacity-70 text-white">
       Reset
     </button>
   );
@@ -39,7 +39,7 @@ export const QuerySearch = () => {
         />
         <button
           type="submit"
-          className="w-10 rounded-r hover:opacity-70 bg-cyan-500 flex items-center justify-center text-white"
+          className="w-10 rounded-r hover:opacity-70 bg-blue-500 flex items-center justify-center text-white"
         >
           <FaMagnifyingGlass />
         </button>
@@ -122,8 +122,8 @@ export const QueryTag = () => {
           onClick={() => handleClick(item?._id)}
           key={item?._id}
           className={`${
-            tagIds.includes(item?._id) ? "bg-cyan-500" : "bg-gray-500"
-          } text-white cursor-pointer hover:bg-cyan-500`}
+            tagIds.includes(item?._id) ? "bg-blue-500" : "bg-gray-500"
+          } text-white cursor-pointer hover:bg-blue-500`}
         >
           {item?.name}
         </Badge>

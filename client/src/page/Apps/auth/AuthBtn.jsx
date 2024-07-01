@@ -21,7 +21,7 @@ export default function AuthBtn() {
     else content = <LoginBtn />;
   } else content = <LoginBtn />;
 
-  return content;
+  return <div className="text-blue-500">{content}</div>;
 }
 
 export const Bubble = ({ className, children, menus = [], origin = "origin-top-right" }) => {
@@ -48,8 +48,8 @@ export const Bubble = ({ className, children, menus = [], origin = "origin-top-r
           to={item.href}
           key={item.href}
           className={`${className} ${
-            active === item?.href ? "text-cyan-500" : ""
-          } flex items-center gap-2 hover:text-cyan-500 flex-grow py-2 border-b border-zinc-400 last:mb-2`}
+            active === item?.href ? "opacity-70" : ""
+          } flex hover:opacity-70 items-center gap-2 flex-grow py-2 border-b border-zinc-400 last:mb-2`}
         >
           {<item.icon />}
           {item.label}
@@ -100,7 +100,7 @@ export const LogoutBtn = () => {
   return (
     <button
       onClick={handleClick}
-      className="flex gap-2 text-sm w-full items-center justify-center border rounded-lg p-2 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
+      className="flex gap-2 text-sm w-full items-center justify-center border rounded-lg p-2 px-2 mt-2 bg-blue-500 text-white hover:opacity-70"
     >
       {loadOut ? (
         <div className="text-xl">

@@ -5,7 +5,7 @@ import { PiSpinner } from "react-icons/pi";
 
 export const Title = ({ className, children, type = "prev" }) => {
   return (
-    <h1 className={`${className} flex items-center text-2xl py-2 gap-1 capitalize`}>
+    <h1 className={`${className} font-playfairDisplay flex items-center text-2xl py-2 gap-1 capitalize`}>
       {type === "aside" ? <AsideBtn /> : type === "prev" ? <Prev /> : null}
       <span className={`${type === "aside" ? "font-semibold" : ""} text-lg`}>{children}</span>
     </h1>
@@ -16,7 +16,7 @@ Title.propTypes;
 export const Prev = ({ className }) => {
   const navigate = useNavigate();
   return (
-    <button onClick={() => navigate(-1)} className={`${className} text-lg hover:text-cyan-500`}>
+    <button onClick={() => navigate(-1)} className={`${className} text-lg text-blue-500`}>
       <FaChevronLeft />
     </button>
   );
@@ -25,7 +25,7 @@ Prev.propTypes;
 
 export const Badge = ({ children, className = "bg-gray-500", onClick }) => {
   return (
-    <span onClick={onClick} className={`${className} inline rounded px-1 text-white text-xs`}>
+    <span onClick={onClick} className={`${className} hover:bg-blue-500 inline rounded px-1 text-white text-xs`}>
       {children}
     </span>
   );
@@ -135,7 +135,7 @@ Modal.propTypes;
 
 export const ViewOption = ({ view, setView }) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-blue-500 text-lg">
       <button
         onClick={() => setView("table")}
         disabled={view === "table"}

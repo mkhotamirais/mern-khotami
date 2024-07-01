@@ -69,7 +69,7 @@ export default function Product() {
       </div>
       <QueryTag />
       <ProductPagination data={data} countData={countData} />
-      {content}
+      <div className="mt-3">{content}</div>
     </div>
   );
 }

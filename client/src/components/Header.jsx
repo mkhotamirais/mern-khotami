@@ -2,13 +2,13 @@ import { FaBars, FaGithub, FaMoon, FaSun, FaXmark } from "react-icons/fa6";
 import { useBasic } from "../store/basic";
 import { useEffect, useState } from "react";
 import { navMenus } from "../lib/data";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import usePath from "../hooks/usePath";
 
 export default function Header() {
   return (
     <>
-      <header className="sticky top-0 h-20 px-3 lg:px-16 flex justify-between items-center border-b shadow bg-white dark:bg-slate-800">
+      <header className="sticky top-0 h-16 px-3 lg:px-16 flex justify-between items-center border-b shadow bg-blue-900 text-white">
         <Logo />
         <NavMain />
         <div className="flex gap-3 items-center">
@@ -58,7 +58,7 @@ export const NavContent = ({ className }) => {
       key={item.href}
       to={item.href}
       onClick={handleClick}
-      className={`${className} ${active === item.href.split("/")[1] ? "text-cyan-500" : ""} hover:text-cyan-500`}
+      className={`${className} ${active === item.href.split("/")[1] ? "text-blue-300" : ""} hover:text-blue-300`}
     >
       {item.label}
     </NavLink>
@@ -81,7 +81,7 @@ export const NavCollapse = ({ className }) => {
     <nav
       className={`z-50 flex flex-col sm:hidden p-3 ${
         openNav ? "scale-y-100" : "scale-y-0"
-      } origin-top ${className} border-b rounded-b-lg fixed top-16 w-full bg-zinc-50 shadow-lg dark:bg-slate-900 transition-all duration-150`}
+      } origin-top ${className} border-b rounded-b-md fixed top-16 w-full bg-blue-900 text-white shadow-lg transition-all duration-150`}
     >
       <NavContent className={`py-2 border-b last:mb-3`} />
     </nav>
@@ -122,9 +122,9 @@ export const SourceCode = ({ className }) => {
 SourceCode.propTypes;
 
 export const Logo = ({ className }) => (
-  <a href="/" className={`${className} flex flex-col gap-0 *:leading-none min-w-max`}>
-    <div className="text-xl">Khotami</div>
-    <div className="text-sm">Mern</div>
-  </a>
+  <Link to="/" className={`${className} font-playfairDisplay flex flex-col gap-0 *:leading-none min-w-max`}>
+    <div className="text-2xl">Mern</div>
+    <div className="text-sm">Khotami</div>
+  </Link>
 );
 Logo.propTypes;
